@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: weatherapp
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/weatherapp}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:Papyrusisskinney1?!}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+server:
+  port: 8080
+
+app:
+  youtube-api-key: ${YOUTUBE_API_KEY:AIzaSyB8ZZnXI3LH1VOlq-HdlHeadl4MQZ1cpzQ}
+  cors-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
