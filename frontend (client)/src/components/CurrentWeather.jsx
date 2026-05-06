@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { celsiusToFahrenheit } from '../utils/weatherUtils'
 
-export default function CurrentWeather({ weather }) {
-  const [unit, setUnit] = useState('C')
-
+export default function CurrentWeather({ weather, unit, onToggleUnit }) {
   if (!weather) return null
 
   const temp = unit === 'C' ? weather.temperature : celsiusToFahrenheit(weather.temperature)
@@ -37,7 +35,7 @@ export default function CurrentWeather({ weather }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-end' }}>
           <button
-            onClick={() => setUnit(u => u === 'C' ? 'F' : 'C')}
+            onClick={onToggleUnit}
             style={{
               background: 'rgba(255,255,255,0.2)',
               color: '#fff',

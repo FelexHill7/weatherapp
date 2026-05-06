@@ -98,11 +98,23 @@ export default function App() {
     }
   }
 
-  const unit = 'C'
+  const [unit, setUnit] = useState('C')
+  const toggleUnit = () => setUnit(u => u === 'C' ? 'F' : 'C')
+
+  function handleHome() {
+    setCurrentWeather(null)
+    setForecast(null)
+    setMapInfo(null)
+    setVideoData(null)
+    setSearchError('')
+    setSaveError('')
+    setSaveSuccess('')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header />
+      <Header onHome={handleHome} />
 
       <main style={{ flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '1.5rem 1rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
 
@@ -119,7 +131,7 @@ export default function App() {
         {/* Current weather + forecast side-by-side on wider screens */}
         {(currentWeather || searchLoading) && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.25rem' }}>
-            {currentWeather && <CurrentWeather weather={currentWeather} />}
+            {currentWeather && <CurrentWeather weather={currentWeather} unit={unit} onToggleUnit={toggleUnit} />}
             {forecast && <ForecastSection forecast={forecast} unit={unit} />}
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Header() {
+export default function Header({ onHome }) {
   return (
     <header style={{
       background: 'linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%)',
@@ -13,7 +13,11 @@ export default function Header() {
       gap: '0.5rem',
       boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div
+        onClick={onHome}
+        title="Go to home"
+        style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
+      >
         <span style={{ fontSize: '2rem' }}>🌤️</span>
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700, lineHeight: 1 }}>WeatherApp</h1>
